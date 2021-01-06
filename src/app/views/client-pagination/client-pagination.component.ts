@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { EventService } from '../../core/event.service';
 import { Subject } from 'rxjs';
-import { finalize, takeUntil, tap } from 'rxjs/operators';
+import { finalize, map, takeUntil } from 'rxjs/operators';
 import Grid from 'tui-grid';
 import * as moment from 'moment';
 
@@ -25,7 +25,13 @@ export class ClientPaginationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadItems();
+    this.drawTable();
+
+    this.loadItems().subscribe((results) => {
+      if (results) {
+        this.grid.resetData(results);
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -34,7 +40,7 @@ export class ClientPaginationComponent implements OnInit, OnDestroy {
     this.loading = false;
   }
 
-  drawTable(gridData): void {
+  drawTable(): void {
     this.grid = new Grid({
       el: document.getElementById('client-pagination-grid'),
       rowHeaders: ['rowNum'],
@@ -74,8 +80,7 @@ export class ClientPaginationComponent implements OnInit, OnDestroy {
             }
           }
         }
-      ],
-      data: gridData
+      ]
     });
   }
 
@@ -86,12 +91,12 @@ export class ClientPaginationComponent implements OnInit, OnDestroy {
       page: 1,
       count: 34347
     };
-    this.eventService.getHistoryNoneAuth(queryParams).pipe(
-      tap(res => {
+    return this.eventService.getHistoryNoneAuth(queryParams).pipe(
+      map(res => {
         if (res.code === 200) {
-          this.drawTable(res.response.results);
+          return res.response.results;
         } else {
-          this.drawTable([]);
+          return null;
         }
       }),
       takeUntil(this.unsubscribe),
@@ -99,6 +104,6 @@ export class ClientPaginationComponent implements OnInit, OnDestroy {
         this.loading = false;
         this.cdr.markForCheck();
       })
-    ).subscribe();
+    );
   }
 }
