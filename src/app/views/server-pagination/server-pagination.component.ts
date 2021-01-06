@@ -70,7 +70,8 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
         },
         {
           header: '발생위치',
-          name: 'event_place_name'
+          name: 'event_place_name',
+          whiteSpace: 'pre-line'
         },
         {
           header: '내용',
