@@ -9,6 +9,11 @@ import Grid from 'tui-grid';
 export class AppComponent implements OnInit {
 
   ngOnInit() {
+    this.setTheme();
+    this.setLanguage();
+  }
+
+  setTheme() {
     // Grid.applyTheme('default');
     Grid.applyTheme('striped');
     // Grid.applyTheme('clean');
@@ -41,5 +46,27 @@ export class AppComponent implements OnInit {
     //     }
     //   }
     // });
+  }
+
+  setLanguage() {
+    Grid.setLanguage('en-US', { // set new language
+      display: {
+        noData: 'No data.',
+        loadingData: 'Loading !!!!!',
+        resizeHandleGuide: 'You can change the width of the column by mouse drag, ' +
+          'and initialize the width by double-clicking.'
+      },
+      net: {
+        confirmCreate: 'Are you sure you want to create {{count}} data?',
+        confirmUpdate: 'Are you sure you want to update {{count}} data?',
+        confirmDelete: 'Are you sure you want to delete {{count}} data?',
+        confirmModify: 'Are you sure you want to modify {{count}} data?',
+        noDataToCreate: 'No data to create.',
+        noDataToUpdate: 'No data to update.',
+        noDataToDelete: 'No data to delete.',
+        noDataToModify: 'No data to modify.',
+        failResponse: 'An error occurred while requesting data.\nPlease try again.'
+      }
+    });
   }
 }
