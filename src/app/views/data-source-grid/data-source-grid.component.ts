@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Grid from 'tui-grid';
+import Grid, { ColumnOptions } from 'tui-grid';
 import { DataSource } from 'tui-grid/types/dataSource';
 
 @Component({
@@ -24,7 +24,7 @@ export class DataSourceGridComponent implements OnInit {
           url: '/vurix-dms/api/v1/event/historyNoneAuth',
           method: 'GET',
           initParams: {
-            count: 5
+            count: 34347
           }
         }
       },
@@ -33,36 +33,42 @@ export class DataSourceGridComponent implements OnInit {
       withCredentials: true
     };
 
+    const columns: ColumnOptions[] = [
+      {
+        header: 'Name',
+        name: 'name'
+      },
+      {
+        header: 'Artist',
+        name: 'artist'
+      },
+      {
+        header: 'Type',
+        name: 'type'
+      },
+      {
+        header: 'Release',
+        name: 'release'
+      },
+      {
+        header: 'Genre',
+        name: 'genre'
+      }
+    ];
+
     this.grid = new Grid({
       el: document.getElementById('data-source-grid'),
       pageOptions: {
         perPage: 5
       },
       data: dataSource,
-      columns: [
-        {
-          header: 'Name',
-          name: 'name'
-        },
-        {
-          header: 'Artist',
-          name: 'artist'
-        },
-        {
-          header: 'Type',
-          name: 'type'
-        },
-        {
-          header: 'Release',
-          name: 'release'
-        },
-        {
-          header: 'Genre',
-          name: 'genre'
-        }
-      ]
+      columns
     });
 
+    this.setGridEvent();
+  }
+
+  setGridEvent() {
     this.grid.on('beforeRequest', (ev) => {
       // 요청을 보내기 전
       console.log('beforeRequest', ev);

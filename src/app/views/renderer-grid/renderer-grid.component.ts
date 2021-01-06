@@ -67,6 +67,7 @@ export class RendererGridComponent implements OnInit {
         renderer: EmptyCellRenderer
       }
     ];
+
     const data = [
       {
         product: 'Apple',

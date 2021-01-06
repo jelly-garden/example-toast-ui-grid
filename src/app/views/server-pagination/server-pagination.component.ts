@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import Pagination from 'tui-pagination';
 import { EventService } from '../../core/event.service';
-import Grid from 'tui-grid';
+import Grid, { ColumnOptions } from 'tui-grid';
 import { Subject } from 'rxjs';
 import { finalize, take, map } from 'rxjs/operators';
 import * as moment from 'moment';
@@ -52,42 +52,44 @@ export class ServerPaginationComponent implements OnInit, OnDestroy {
   }
 
   drawTable(): void {
+    const columns: ColumnOptions[] = [
+      {
+        header: '이벤트코드',
+        name: 'event_code'
+      },
+      {
+        header: '이벤트명',
+        name: 'event_name'
+      },
+      {
+        header: '읍면동',
+        name: 'emd_name'
+      },
+      {
+        header: '발생위치',
+        name: 'event_place_name',
+        whiteSpace: 'pre-line'
+      },
+      {
+        header: '내용',
+        name: 'event_contents'
+      },
+      {
+        header: '등록일자',
+        name: 'reg_date',
+        formatter: (props: FormatterProps) => {
+          if (props.value) {
+            const value = props.value as moment.MomentInput;
+            return moment(value, 'X').format('YYYY-MM-DD HH:mm:ss');
+          }
+        }
+      }
+    ];
+
     this.grid = new Grid({
       el: document.getElementById('server-pagination-grid'),
       rowHeaders: ['rowNum'],
-      columns: [
-        {
-          header: '이벤트코드',
-          name: 'event_code'
-        },
-        {
-          header: '이벤트명',
-          name: 'event_name'
-        },
-        {
-          header: '읍면동',
-          name: 'emd_name'
-        },
-        {
-          header: '발생위치',
-          name: 'event_place_name',
-          whiteSpace: 'pre-line'
-        },
-        {
-          header: '내용',
-          name: 'event_contents'
-        },
-        {
-          header: '등록일자',
-          name: 'reg_date',
-          formatter: (props: FormatterProps) => {
-            if (props.value) {
-              const value = props.value as moment.MomentInput;
-              return moment(value, 'X').format('YYYY-MM-DD HH:mm:ss');
-            }
-          }
-        }
-      ]
+      columns
     });
   }
 

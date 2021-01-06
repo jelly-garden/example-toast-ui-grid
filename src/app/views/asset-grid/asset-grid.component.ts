@@ -14,7 +14,7 @@ export class AssetGridComponent implements OnInit {
   ngOnInit(): void {
     this.drawTable();
 
-    this.setData();
+    this.loadItems();
   }
 
   drawTable(): void {
@@ -319,7 +319,7 @@ export class AssetGridComponent implements OnInit {
     });
   }
 
-  setData() {
+  loadItems() {
     const newData = [
       {
         reg_date: '2019-11-19 09:00 AM',
@@ -442,6 +442,7 @@ export class AssetGridComponent implements OnInit {
         status: '1'
       }
     ];
+
     this.grid.resetData(newData);
   }
 }

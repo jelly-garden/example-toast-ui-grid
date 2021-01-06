@@ -78,6 +78,7 @@ export class EditorGridComponent implements OnInit {
         renderer: DeleteBtnCellRenderer
       }
     ];
+
     const data = [
       {
         product: 'Apple',
