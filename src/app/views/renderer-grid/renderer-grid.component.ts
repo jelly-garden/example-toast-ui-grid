@@ -78,13 +78,13 @@ export class RendererGridComponent implements OnInit {
         product: 'Orange',
         price: 2.99,
         unit: 'Kg',
-        grade: 1
+        grade: 5
       },
       {
         product: 'Carrots',
         price: 0.39,
         unit: 'Units',
-        grade: 1
+        grade: 3
       }
     ];
 

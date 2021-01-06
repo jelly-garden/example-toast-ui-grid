@@ -30,7 +30,8 @@ export class EditorGridComponent implements OnInit {
           options: {
             maxLength: 10
           }
-        }
+        },
+        defaultValue: ''
       },
       {
         header: 'Price',
@@ -68,7 +69,8 @@ export class EditorGridComponent implements OnInit {
             min: 1,
             max: 5
           }
-        }
+        },
+        defaultValue: 1
       },
       {
         name: 'control',
@@ -87,13 +89,13 @@ export class EditorGridComponent implements OnInit {
         product: 'Orange',
         price: 2.99,
         unit: 'Kg',
-        grade: 1
+        grade: 5
       },
       {
         product: 'Carrots',
         price: 0.39,
         unit: 'Units',
-        grade: 1
+        grade: 3
       }
     ];
 
