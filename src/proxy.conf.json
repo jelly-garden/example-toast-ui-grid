@@ -1,0 +1,18 @@
+{
+  "/vurix-dms/api": {
+    "target": "http://mayor-172-16-36-180.vurix.kr/vurix-dms/api",
+    "secure": false,
+    "pathRewrite": {
+      "^/vurix-dms/api": ""
+    },
+    "changeOrigin": true
+  },
+  "/dms-gis/api": {
+    "target": "http://mayor-172-16-36-180.vurix.kr/dms-gis/api",
+    "secure": false,
+    "pathRewrite": {
+      "^/dms-gis/api": ""
+    },
+    "changeOrigin": true
+  }
+}
