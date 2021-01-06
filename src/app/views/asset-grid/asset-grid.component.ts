@@ -12,8 +12,6 @@ export class AssetGridComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    Grid.applyTheme('striped');
-
     this.drawTable();
 
     this.setData();
@@ -319,8 +317,6 @@ export class AssetGridComponent implements OnInit {
         resizable: true
       }
     });
-
-    this.setGridEvent();
   }
 
   setData() {
@@ -447,26 +443,5 @@ export class AssetGridComponent implements OnInit {
       }
     ];
     this.grid.resetData(newData);
-  }
-
-  setGridEvent() {
-    this.grid.on('beforeChange', ev => {
-      console.log('before change:', ev);
-    });
-    this.grid.on('afterChange', ev => {
-      console.log('after change:', ev);
-    });
-    this.grid.on('click', ev => {
-      console.log('click !', ev);
-    });
-
-    this.grid.on('selection', (ev) => {
-      console.log('selection!', ev);
-      // const a = this.grid.getSelectionRange();
-      // console.log('##', a);
-
-      const b = this.grid.getRowSpanData(1, 'asset_type');
-      console.log(b);
-    });
   }
 }

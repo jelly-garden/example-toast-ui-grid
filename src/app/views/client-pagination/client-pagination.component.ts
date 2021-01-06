@@ -4,7 +4,6 @@ import { Subject } from 'rxjs';
 import { finalize, takeUntil, tap } from 'rxjs/operators';
 import Grid from 'tui-grid';
 import * as moment from 'moment';
-import { FormatterProps } from 'tui-grid/types/store/column';
 
 @Component({
   selector: 'app-client-pagination',
@@ -68,7 +67,7 @@ export class ClientPaginationComponent implements OnInit, OnDestroy {
         {
           header: '등록일자',
           name: 'reg_date',
-          formatter: (props: FormatterProps) => {
+          formatter: (props) => {
             if (props.value) {
               const value = props.value as moment.MomentInput;
               return moment(value, 'X').format('YYYY-MM-DD HH:mm:ss');

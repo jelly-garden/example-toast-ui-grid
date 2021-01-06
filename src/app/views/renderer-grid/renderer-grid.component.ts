@@ -22,15 +22,21 @@ export class RendererGridComponent implements OnInit {
     const columns: ColumnOptions[] = [
       {
         header: 'Product',
-        name: 'product'
+        name: 'product',
+        align: 'center'
       },
       {
         header: 'Price',
-        name: 'price'
+        name: 'price',
+        align: 'right',
+        formatter: (props) => {
+          return `${props.value} $`;
+        }
       },
       {
         header: 'Unit',
         name: 'unit',
+        align: 'right',
         renderer: { // 디폴트 렌더러 스타일링
           styles: {
             fontWeight: 'bold',
@@ -46,6 +52,7 @@ export class RendererGridComponent implements OnInit {
       {
         header: 'Grade',
         name: 'grade',
+        align: 'center',
         renderer: { // 커스텀 렌더러
           type: RangeCellRenderer,
           options: {

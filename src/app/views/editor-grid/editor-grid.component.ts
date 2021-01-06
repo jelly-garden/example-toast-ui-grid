@@ -24,6 +24,7 @@ export class EditorGridComponent implements OnInit {
       {
         header: 'Product',
         name: 'product',
+        align: 'center',
         editor: {
           type: TextEditor,
           options: {
@@ -34,18 +35,25 @@ export class EditorGridComponent implements OnInit {
       {
         header: 'Price',
         name: 'price',
+        align: 'right',
         editor: {
           type: NumberEditor
+        },
+        defaultValue: 0,
+        formatter: (props) => {
+          return `${props.value} $`;
         }
       },
       {
         header: 'Unit',
         name: 'unit',
+        align: 'right',
         editor: 'text'
       },
       {
         header: 'Grade',
         name: 'grade',
+        align: 'center',
         renderer: { // 커스텀 렌더러
           type: RangeCellRenderer,
           options: {
