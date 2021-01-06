@@ -104,6 +104,8 @@ export class EditorGridComponent implements OnInit {
       el: document.getElementById('editor-grid'),
       columns,
       data,
+      bodyHeight: 300,
+      showDummyRows: true,
       header: {
         complexColumns: [ // 복합 컬럼
           {

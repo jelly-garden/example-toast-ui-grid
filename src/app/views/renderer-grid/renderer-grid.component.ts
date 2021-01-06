@@ -93,6 +93,8 @@ export class RendererGridComponent implements OnInit {
       el: document.getElementById('renderer-grid'),
       columns,
       data,
+      bodyHeight: 300,
+      showDummyRows: true,
       header: {
         complexColumns: [ // 복합 컬럼
           {
