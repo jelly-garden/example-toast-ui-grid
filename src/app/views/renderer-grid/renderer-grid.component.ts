@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import Grid, { ColumnOptions } from 'tui-grid';
-import { NumberEditor, TextEditor, RangeEditor } from '../../custom-editor';
-import { RangeCellRenderer, DeleteBtnCellRenderer } from '../../custom-cell-renderer';
-import { AddBtnHeaderRenderer } from '../../custom-header-renderer';
+import { RangeCellRenderer, EmptyCellRenderer } from '../../core/custom-cell-renderer';
+import { EmptyHeaderRenderer } from '../../core/custom-header-renderer';
 
 @Component({
-  selector: 'app-customize-grid',
-  templateUrl: './customize-grid.component.html',
-  styleUrls: ['./customize-grid.component.scss']
+  selector: 'app-renderer-grid',
+  templateUrl: './renderer-grid.component.html',
+  styleUrls: ['./renderer-grid.component.scss']
 })
-export class CustomizeGridComponent implements OnInit {
+export class RendererGridComponent implements OnInit {
 
   grid: Grid;
 
@@ -23,20 +22,11 @@ export class CustomizeGridComponent implements OnInit {
     const columns: ColumnOptions[] = [
       {
         header: 'Product',
-        name: 'product',
-        editor: {
-          type: TextEditor,
-          options: {
-            maxLength: 10
-          }
-        }
+        name: 'product'
       },
       {
         header: 'Price',
-        name: 'price',
-        editor: {
-          type: NumberEditor
-        }
+        name: 'price'
       },
       {
         header: 'Unit',
@@ -60,21 +50,14 @@ export class CustomizeGridComponent implements OnInit {
           type: RangeCellRenderer,
           options: {
             min: 1,
-            max: 5
-          }
-        },
-        editor: {
-          type: RangeEditor,
-          options: {
-            min: 1,
-            max: 5
+            max: 5,
+            disabled: true
           }
         }
       },
       {
         name: 'control',
-        align: 'center',
-        renderer: DeleteBtnCellRenderer
+        renderer: EmptyCellRenderer
       }
     ];
     const data = [
@@ -99,7 +82,7 @@ export class CustomizeGridComponent implements OnInit {
     ];
 
     this.grid = new Grid({
-      el: document.getElementById('customize-grid'),
+      el: document.getElementById('renderer-grid'),
       columns,
       data,
       header: {
@@ -108,7 +91,7 @@ export class CustomizeGridComponent implements OnInit {
             header: 'info',
             name: 'controls',
             childNames: ['control'],
-            renderer: AddBtnHeaderRenderer, // 커스텀 컬럼 헤더
+            renderer: EmptyHeaderRenderer, // 커스텀 컬럼 헤더
             hideChildHeaders: true
           }
         ]
@@ -116,3 +99,4 @@ export class CustomizeGridComponent implements OnInit {
     });
   }
 }
+

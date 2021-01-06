@@ -5,11 +5,12 @@ export class RangeCellRenderer implements CellRenderer {
 
   constructor(props) {
     const _el = document.createElement('input');
-    const { min, max } = props.columnInfo.renderer.options;
+    const { min, max, disabled } = props.columnInfo.renderer.options;
 
     _el.type = 'range';
     _el.min = String(min);
     _el.max = String(max);
+    _el.disabled = disabled;
 
     this.el = _el;
     this.render(props);
@@ -48,3 +49,20 @@ export class DeleteBtnCellRenderer implements CellRenderer {
   }
 }
 
+export class EmptyCellRenderer implements CellRenderer {
+  el: any;
+
+  constructor(props) {
+    const _el = document.createElement('div');
+
+    this.el = _el;
+  }
+
+  getElement() {
+    return this.el;
+  }
+
+  render(props) {
+    this.el.value = String(props.value);
+  }
+}

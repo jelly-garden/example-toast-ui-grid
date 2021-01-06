@@ -7,7 +7,8 @@ import { AssetGridComponent } from './views/asset-grid/asset-grid.component';
 import { DataSourceGridComponent } from './views/data-source-grid/data-source-grid.component';
 import { ServerPaginationComponent } from './views/server-pagination/server-pagination.component';
 import { ClientPaginationComponent } from './views/client-pagination/client-pagination.component';
-import { CustomizeGridComponent } from './views/customize-grid/customize-grid.component';
+import { EditorGridComponent } from './views/editor-grid/editor-grid.component';
+import { RendererGridComponent } from './views/renderer-grid/renderer-grid.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CustomizeGridComponent } from './views/customize-grid/customize-grid.co
     DataSourceGridComponent,
     ServerPaginationComponent,
     ClientPaginationComponent,
-    CustomizeGridComponent
+    EditorGridComponent,
+    RendererGridComponent
   ],
   imports: [
     BrowserModule,

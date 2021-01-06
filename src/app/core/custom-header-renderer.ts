@@ -24,3 +24,20 @@ export class AddBtnHeaderRenderer implements HeaderRenderer {
   render(props) {
   }
 }
+
+export class EmptyHeaderRenderer implements HeaderRenderer {
+  el: any;
+
+  constructor(props) {
+    const _el = document.createElement('div');
+
+    this.el = _el;
+  }
+
+  getElement() {
+    return this.el;
+  }
+
+  render(props) {
+  }
+}
